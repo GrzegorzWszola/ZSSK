@@ -11,7 +11,13 @@ endif()
 
 find_package(Threads REQUIRED)
 
-add_executable(zssk main.cpp)
+add_executable(zssk
+  main.cpp
+  src/archive.cpp
+  src/codec.cpp
+  src/commands.cpp
+)
+target_include_directories(zssk PRIVATE include)
 target_link_libraries(zssk PRIVATE Threads::Threads)
 
 if(MSVC)

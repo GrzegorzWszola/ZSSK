@@ -4,7 +4,7 @@ cd build
 
 cmake ..
 
-make --build .
+cmake --build .
 
 ./zssk xxx...
 
@@ -14,6 +14,29 @@ zssk bench plik.bin --algo both --threads 1,2,4,8 --bmin 10 --bmax 26 --reps 5 -
 zssk bench plik.bin --R0 0.5 --T0 200 --memlimit 512 --w 0.5
 zssk selftest
 
+Interfejs graficzny
+-------------------
+
+Po zbudowaniu programu uruchom w katalogu projektu `python3 gui.py`.
+Wymagany jest Python 3 z Tkinter (na niektórych dystrybucjach Linuksa pakiet
+`python3-tk`) oraz dostępny ekran graficzny. Jeśli program `zssk` nie zostanie
+znaleziony automatycznie, wybierz go przyciskiem „Browse...”.
+
+Wybierz operację, pliki i opcje, a następnie „Run”. Kompresja i dekompresja
+pokazują wykres rozmiaru pliku wejściowego i wyjściowego. Dla benchmarku można
+wybrać czas, stopień kompresji lub przyspieszenie (wymaga pomiaru dla jednego
+wątku); czerwone słupki oznaczają nieudaną weryfikację. Wyniki benchmarku można
+opcjonalnie zapisać do CSV, a aktualny wykres do pliku SVG przyciskiem
+„Save chart as SVG...”. Przy dużej liczbie wyników wykres można przewijać.
+
+Struktura projektu
+------------------
+
+- `include/zssk/codec.hpp` i `src/codec.cpp`: algorytmy RLE i Huffman.
+- `include/zssk/archive.hpp` i `src/archive.cpp`: przetwarzanie blokow, watki i format pliku ZSSK.
+- `include/zssk/commands.hpp` i `src/commands.cpp`: polecenia compress, decompress, bench oraz selftest.
+- `main.cpp`: parsowanie argumentow i uruchamianie polecen.
+- `gui.py`: opcjonalny interfejs graficzny i wykresy wynikow.
 
 
 1. Cegiełki: kodeki jednego bloku
